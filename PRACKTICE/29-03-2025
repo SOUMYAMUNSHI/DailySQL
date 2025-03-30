@@ -1,0 +1,81 @@
+# SQL Join Questions and Answers
+
+## 1. Retrieve employee names and their department names.
+
+### Query:
+
+```sql
+SELECT EMP.ENAME, DEPT.DNAME FROM EMP, DEPT WHERE EMP.DEPTNO = DEPT.DEPTNO;
+```
+
+## 2. Find employees who do not belong to any department.
+
+### Query:
+
+```sql
+SELECT EMP.ENAME FROM EMP, DEPT WHERE EMP.DEPTNO = DEPT.DEPTNO(+) AND DEPT.DEPTNO IS NULL;
+```
+
+## 3. Find departments that have no employees.
+
+### Query:
+
+```sql
+SELECT DEPT.DNAME FROM EMP, DEPT WHERE DEPT.DEPTNO = EMP.DEPTNO(+) AND EMP.DEPTNO IS NULL;
+```
+
+## 4. Retrieve all employees from the "SALES" department.
+
+### Query:
+
+```sql
+SELECT EMP.* FROM EMP, DEPT WHERE EMP.DEPTNO = DEPT.DEPTNO AND DEPT.DNAME = 'SALES';
+```
+
+## 5. Find employees who share the same manager.
+
+### Query:
+
+```sql
+SELECT EMP1.ENAME, EMP2.ENAME FROM EMP EMP1, EMP EMP2 WHERE EMP1.MGR = EMP2.MGR;
+```
+
+## 6. Count employees in each department.
+
+### Query:
+
+```sql
+SELECT COUNT(EMP.EMPNO) FROM EMP, DEPT WHERE EMP.DEPTNO = DEPT.DEPTNO GROUP BY DEPT.DNAME;
+```
+
+## 7. Find employees with duplicate salaries.
+
+### Query:
+
+```sql
+SELECT DISTINCT EMP1.ENAME FROM EMP EMP1, EMP EMP2 WHERE EMP1.SAL = EMP2.SAL AND EMP1.EMPNO <> EMP2.EMPNO;
+```
+
+## 8. Find employees with no manager.
+
+### Query:
+
+```sql
+SELECT EMP1.ENAME FROM EMP EMP1 WHERE EMP1.MGR IS NULL;
+```
+
+## 9. Find the highest salary in each department.
+
+### Query:
+
+```sql
+SELECT DEPT.DNAME, MAX(EMP.SAL) FROM EMP, DEPT WHERE EMP.DEPTNO = DEPT.DEPTNO GROUP BY DEPT.DNAME;
+```
+
+## 10. Retrieve employee names and their department locations.
+
+### Query:
+
+```sql
+SELECT EMP.ENAME, DEPT.LOC FROM EMP, DEPT WHERE EMP.DEPTNO = DEPT.DEPTNO;
+```
